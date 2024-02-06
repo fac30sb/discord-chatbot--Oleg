@@ -36,6 +36,9 @@ npm install discord.js
 ```
 npm install -g nodemon
 ```
+```
+npm install --save-dev eslint
+```
 
 <img width="800" alt="Screenshot 2024-02-06 at 14 30 23" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/73a677b5-0b23-4ca2-9b00-98b0bddf4177">
 
