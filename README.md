@@ -16,4 +16,4 @@ npm install discord.js
 npm install -g nodemon
 ```
 
-<img width="800" alt="Screenshot 2024-02-06 at 13 10 24" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b3019ddd-a038-4155-a868-f30bf9dc84b6">
+<img width="800" alt="Screenshot 2024-02-06 at 13 40 49" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/97c3189c-d597-4523-b5bb-8eec475b2c89">
