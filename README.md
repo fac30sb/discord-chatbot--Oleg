@@ -12,3 +12,5 @@ npm init -y
 ```
 npm install discord.js
 ```
+
+<img width="800" alt="Screenshot 2024-02-06 at 13 10 24" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b3019ddd-a038-4155-a868-f30bf9dc84b6">
