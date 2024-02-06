@@ -1,8 +1,8 @@
 # discord-chatbot--Oleg-Loza
 
-## 1. Set up the bot on your server
+## 1. Create a new server
 
-1. Create a new server
+## 2. Set up the bot on your server
 2. Go to ```https://discord.com/developers/applications/```
 3. Create the new app
 4. Use OAuth2 --> URL generator and generate a url to invite your app (bot) to your server as a channel member
