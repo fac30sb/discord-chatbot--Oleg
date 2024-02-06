@@ -25,7 +25,7 @@
 ```
 mkdir discord_bot && cd discord_bot
 ```
-3. Set up the project:
+2. Set up the project:
 
 ```
 npm init -y
