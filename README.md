@@ -19,6 +19,10 @@
 <br>
 
 ## 2. Set up VS Code
+
+1. Create the project folder and navigate in there
+2. Set up the project:
+
 ```
 npm init -y
 ```
