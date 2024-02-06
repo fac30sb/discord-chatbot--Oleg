@@ -1,5 +1,7 @@
 # discord-chatbot--Oleg-Loza
 
+https://discordjs.guide/#before-you-begin
+
 <br>
 
 ## 1. Create a new server
