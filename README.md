@@ -2,7 +2,7 @@
 
 <br>
 
-## 1. Create a new server
+## 1. Create a new server on discord
 
 <br>
 
