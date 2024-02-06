@@ -58,6 +58,11 @@ Now your bot is "online" but can't talk yet
 
 ## 4. Connecting to OPEN AI API
 
+1. Modify the script
+   
+```yml
+```
+
 <br>
 
 <img width="800" alt="Screenshot 2024-02-06 at 20 58 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/dc0bd4bb-4b0c-469c-a9ac-9377b06d3ae4">
