@@ -24,8 +24,9 @@ const client = new Client({
 const conversationHistory = [];
 
 client.on('ready', (c) => {
+
     console.log(`✅ ${c.user.tag} is online.`);
-});
+
 
 // Function to make API call to OpenAI GPT-3.5
 async function makeChatGPTApiCall(question, channel) {
