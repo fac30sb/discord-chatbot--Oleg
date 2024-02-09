@@ -4,7 +4,7 @@ https://discordjs.guide/#before-you-begin
 
 <br>
 
-## 1. Create a new server
+## 1. Create a new server on discord
 
 <br>
 
@@ -27,7 +27,7 @@ https://discordjs.guide/#before-you-begin
 ```
 mkdir discord_bot && cd discord_bot
 ```
-3. Set up the project:
+2. Set up the project:
 
 ```
 npm init -y
@@ -54,4 +54,20 @@ Now your bot is "online" but can't talk yet
 
 <br>
 
+1. Modify the script
+
+```yml
+```
+
 <img width="800" alt="Screenshot 2024-02-06 at 16 27 45" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8dced1f8-42be-4471-a783-01c06ec055c1">
+
+## 4. Connecting to OPEN AI API
+
+1. Modify the script
+   
+```yml
+```
+
+<br>
+
+<img width="800" alt="Screenshot 2024-02-06 at 20 58 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/dc0bd4bb-4b0c-469c-a9ac-9377b06d3ae4">
