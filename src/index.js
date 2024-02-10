@@ -73,17 +73,18 @@ async function makeChatGPTApiCall(question, channel) {
 client.on('messageCreate', async (message) => {
 	if (message.author.bot) return;
 
-	const whatsYourName = /bro,? what('?s| is) your name\?/i;
-	const areYouBot = /bro,? are (you|u) a? bot\?/i;
+	const whatsYourName = /bro,? what('?s| is) your name\??/i;
+	const areYouBot = /bro,? are (you|u) a? bot\??/i;
+	const askBot = /^bro,?/i;
 
 	try {
 		if (whatsYourName.test(message.content)) {
 			message.channel.send('My friends call me Bro!');
 		}
-		else if (/bro,? are (you|u) a? bot\?/i.test(message.content)) {
+		else if (areYouBot.test(message.content)) {
 			message.channel.send('Yes, I am a bot!');
 		}
-		else if (/^bro,?/i.test(message.content)) {
+		else if (askBot.test(message.content)) {
 			const question = message.content.slice('!bro'.length).trim();
 			if (!question) {
 				return message.channel.send('Please provide a question.');
@@ -104,27 +105,28 @@ client.on('messageCreate', async (message) => {
 
 
 client.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) return;
+	if (!interaction.isCommand()) return;
 
-    const commandName = interaction.commandName;
-    const command = commands.get(commandName);
+	const commandName = interaction.commandName;
+	const command = commands.get(commandName);
 
-    if (!command) return;
+	if (!command) return;
 
-    try {
-        await Promise.all([
-            interaction.channel.sendTyping(),
-            delay(2000) // Delay for 2 seconds
-        ]);
-        await command.execute(interaction);
-    } catch (error) {
-        console.error('Error executing command:', error);
-        await interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
-    }
+	try {
+		await Promise.all([
+			interaction.channel.sendTyping(),
+			delay(2000), // Delay for 2 seconds
+		]);
+		await command.execute(interaction);
+	}
+	catch (error) {
+		console.error('Error executing command:', error);
+		await interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+	}
 });
 
 function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 client.login(token);
