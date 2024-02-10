@@ -70,10 +70,14 @@ async function makeChatGPTApiCall(question, channel) {
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
+	const whatsyourname = /bro,? what('?s| is) your name\?/i;
+
     try {
-        if (message.content === '!hello') {
-            message.channel.send('Hello!');
-        } else if (message.content.startsWith('!bro')) {
+        if (whatsyourname.test(message.content)) {
+            message.channel.send('My friends call me Bro!');
+		} else if (/bro,? are (you|u) a? bot\?/i.test(message.content)) {
+			message.channel.send('Yes, I am a bot!');
+        } else if (/^bro,?/i.test(message.content)) {
             const question = message.content.slice('!bro'.length).trim();
             if (!question) {
                 return message.channel.send('Please provide a question.');
