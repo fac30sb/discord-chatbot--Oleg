@@ -1,6 +1,8 @@
 const { Client, IntentsBitField, Partials } = require('discord.js');
 const { token, api_key } = require('../config.json');
 const axios = require('axios');
+const { commands } = require('../registercommands'); // Import the commands collection
+
 
 const client = new Client({
 	intents: [
@@ -23,7 +25,7 @@ const client = new Client({
 // Define a global array to hold the conversation history
 const conversationHistory = [];
 
-client.on('ready', (c) => {
+client.once('ready', (c) => {
 	console.log(`✅ ${c.user.tag} is online.`);
 });
 
@@ -71,10 +73,11 @@ async function makeChatGPTApiCall(question, channel) {
 client.on('messageCreate', async (message) => {
 	if (message.author.bot) return;
 
-	const whatsyourname = /bro,? what('?s| is) your name\?/i;
+	const whatsYourName = /bro,? what('?s| is) your name\?/i;
+	const areYouBot = /bro,? are (you|u) a? bot\?/i;
 
 	try {
-		if (whatsyourname.test(message.content)) {
+		if (whatsYourName.test(message.content)) {
 			message.channel.send('My friends call me Bro!');
 		}
 		else if (/bro,? are (you|u) a? bot\?/i.test(message.content)) {
@@ -98,5 +101,30 @@ client.on('messageCreate', async (message) => {
 		message.channel.send('An error occurred while processing your request.');
 	}
 });
+
+
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
+
+    const commandName = interaction.commandName;
+    const command = commands.get(commandName);
+
+    if (!command) return;
+
+    try {
+        await Promise.all([
+            interaction.channel.sendTyping(),
+            delay(2000) // Delay for 2 seconds
+        ]);
+        await command.execute(interaction);
+    } catch (error) {
+        console.error('Error executing command:', error);
+        await interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+    }
+});
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 client.login(token);
