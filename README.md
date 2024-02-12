@@ -70,4 +70,30 @@ Now your bot is "online" but can't talk yet
 
 <br>
 
+## 5. Deploying to a cloud server to run and be available 24 hours a day
+
+1. Launch the server
+2. Clone the repository
+3. Install nodejs and npm
+4. Install dependencies
+5. Instal PM2:
+      
+```sh
+sudo npm install -g pm2
+
+```
+6. Start PM2
+
+```sh
+pm2 start index.js
+```
+
+7. Confirm
+
+```sh
+pm2 list index.js
+```
+
+<br>
+
 <img width="800" alt="Screenshot 2024-02-06 at 20 58 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/dc0bd4bb-4b0c-469c-a9ac-9377b06d3ae4">
