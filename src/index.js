@@ -48,10 +48,13 @@ async function makeChatGPTApiCall(question, channel) {
 		}));
 
 		// Add the current user question to the messages array
-		messages.push({ role: 'user', content: question });
+		messages.push({
+			role: 'user',
+			content: question,
+		});
 
 		const response = await axios.post(apiUrl, {
-			messages: messages, // Use the existing conversation history
+			messages: messages.map(msg => ({ role: msg.role, content: msg.content })),
 			model: 'gpt-3.5-turbo',
 		}, {
 			headers: {
@@ -62,6 +65,12 @@ async function makeChatGPTApiCall(question, channel) {
 
 		const answer = response.data.choices[0].message.content;
 
+		// Add the current question to the conversation history
+		conversationHistory.push({
+			role: 'user',
+			question: question,
+		});
+
 		return answer;
 	}
 	catch (error) {
@@ -69,6 +78,8 @@ async function makeChatGPTApiCall(question, channel) {
 		throw error;
 	}
 }
+
+
 
 client.on('messageCreate', async (message) => {
 	if (message.author.bot) return;
@@ -78,6 +89,12 @@ client.on('messageCreate', async (message) => {
 	const askBot = /^bro,?/i;
 
 	try {
+		// Update conversation history with the current message
+		conversationHistory.push({
+			role: 'user',
+			question: message.content,
+		});
+
 		if (whatsYourName.test(message.content)) {
 			message.channel.send('My friends call me Bro!');
 		}
@@ -102,6 +119,7 @@ client.on('messageCreate', async (message) => {
 		message.channel.send('An error occurred while processing your request.');
 	}
 });
+
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
