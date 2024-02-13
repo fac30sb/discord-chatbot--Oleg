@@ -8,7 +8,7 @@ https://discordjs.guide/#before-you-begin
 
 <br>
 
-## 2. Seting up the bot on your server
+## 2. Set up the bot on your server
 1. Go to ```https://discord.com/developers/applications/```
 2. Create the new app
 3. Use OAuth2 --> URL generator and generate a url to invite your app (bot) to your server as a channel member
