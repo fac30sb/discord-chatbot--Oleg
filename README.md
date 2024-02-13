@@ -108,6 +108,8 @@ client.on('messageCreate', message => {
 client.login(process.env.DISCORD_TOKEN);
 ```
 
+</details>
+
 <img width="800" alt="Screenshot 2024-02-06 at 16 27 45" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8dced1f8-42be-4471-a783-01c06ec055c1">
 
 ## 4. Connecting to OPEN AI API
