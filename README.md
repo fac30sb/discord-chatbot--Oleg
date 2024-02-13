@@ -56,7 +56,7 @@ Now your bot is "online" but can't talk yet
 
 1. Modify the script
 
-```yml
+```js
 require('dotenv').config();
 const { Client, IntentsBitField, Partials } = require('discord.js');
 
