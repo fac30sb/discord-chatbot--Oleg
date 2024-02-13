@@ -54,6 +54,8 @@ Now your bot is "online" but can't talk yet
 
 <br>
 
+**<details markdown=1><summary markdown="span">index.js</summary>**
+
 1. Modify the script
 
 ```js
