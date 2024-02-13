@@ -114,6 +114,16 @@ Now your bot is "online" but can't talk yet
     
     <img width="800" alt="Screenshot 2024-02-06 at 16 27 45" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8dced1f8-42be-4471-a783-01c06ec055c1">
 
+## 4. Set up slash commands
+
+1. Create a module with slash commands and set up export:
+
+2. Modify the index.js to import and register slash commands each time the server launches:
+
+3. Test the commands:
+   
+<img width="750" alt="Screenshot 2024-02-13 at 14 04 46" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b37606b9-9971-4523-a60a-092cf601a9e9">
+
 ## 4. Connecting to OPEN AI API
 
 1. Modify the script
