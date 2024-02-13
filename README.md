@@ -116,11 +116,13 @@ Now your bot is "online" but can't talk yet
 
 ## 4. Set up slash commands
 
-1. Create a module with slash commands and set up export:
+1. Create a folder and modules with slash commands and set up export
+   
+3. Create registercommands.js to register the the slash commands and set up export
 
-2. Modify the index.js to import and register slash commands each time the server launches:
+4. Modify the index.js to import and register slash commands each time the server launches:
 
-3. Test the commands:
+5. Test the commands:
    
 <img width="750" alt="Screenshot 2024-02-13 at 14 04 46" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b37606b9-9971-4523-a60a-092cf601a9e9">
 <img width="1000" alt="Screenshot 2024-02-13 at 14 11 01" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8c127616-9214-4a20-818a-4433b805c3d8">
