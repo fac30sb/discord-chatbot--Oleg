@@ -123,6 +123,7 @@ Now your bot is "online" but can't talk yet
 3. Test the commands:
    
 <img width="750" alt="Screenshot 2024-02-13 at 14 04 46" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b37606b9-9971-4523-a60a-092cf601a9e9">
+<img width="1000" alt="Screenshot 2024-02-13 at 14 11 01" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8c127616-9214-4a20-818a-4433b805c3d8">
 
 ## 4. Connecting to OPEN AI API
 
