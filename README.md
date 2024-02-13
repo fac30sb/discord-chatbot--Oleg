@@ -6,6 +6,8 @@ https://discordjs.guide/#before-you-begin
 
 ## 1. Create a new server on discord
 
+<img width="316" alt="Screenshot 2024-02-13 at 13 49 23" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/a7be710a-63af-4102-8bdf-35ba2cdc3254">
+
 <br>
 
 ## 2. Seting up the bot on your server
