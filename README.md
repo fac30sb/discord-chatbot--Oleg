@@ -301,10 +301,14 @@ Now your bot is "online" but can't talk yet
 ## 5. Deploying to a cloud server to run and be available 24 hours a day
 
 1. Launch the server
-2. Clone the repository
-3. Install nodejs and npm
-4. Install dependencies
-5. Instal PM2:
+
+   <img width="800" alt="Screenshot 2024-02-14 at 16 45 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/0e1e1614-937b-4d7a-b7af-b3080a0c9eaf">
+
+   
+3. Clone the repository
+4. Install nodejs and npm
+5. Install dependencies
+6. Instal PM2:
       
 ```sh
 sudo npm install -g pm2
