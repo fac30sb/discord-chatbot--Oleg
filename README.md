@@ -4,7 +4,7 @@ https://discordjs.guide/#before-you-begin
 
 ## 1. Create a new server on discord
 
-    <img width="316" alt="Screenshot 2024-02-13 at 13 49 23" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/3a3acc69-e792-4036-a5f4-96ae0e7837ac">
+   <img width="316" alt="Screenshot 2024-02-13 at 13 49 23" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/3a3acc69-e792-4036-a5f4-96ae0e7837ac">
 
 <br>
 
