@@ -31,56 +31,55 @@ client.once('ready', (c) => {
 
 // Function to make API call to OpenAI GPT-3.5
 async function makeChatGPTApiCall(question, channel) {
-	try {
-		// Simulate typing
-		await channel.sendTyping();
+    try {
+        await channel.sendTyping();
 
-		const apiUrl = 'https://api.openai.com/v1/chat/completions';
-		const apiKey = api_key;
+        const apiUrl = 'https://api.openai.com/v1/chat/completions';
+        const apiKey = api_key;
 
-		// Create the messages array using the existing conversation history
-		const messages = conversationHistory.map(entry => ({
-			role: 'system',
-			content: 'You are a helpful assistant.',
-		}, {
-			role: 'user',
-			content: entry.question,
-		}));
+        // Create the messages array using the existing conversation history
+        const messages = conversationHistory.map(entry => ({
+            role: 'user',
+            content: entry.question,
+        }));
 
-		// Add the current user question to the messages array
-		messages.push({
-			role: 'user',
-			content: question,
-		});
+        // Add a system message as the first element in the messages array
+        messages.unshift({
+            role: 'system',
+            content: 'You are a helpful assistant.',
+        });
 
-		const response = await axios.post(apiUrl, {
-			messages: messages.map(msg => ({ role: msg.role, content: msg.content })),
-			model: 'gpt-3.5-turbo',
-		}, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': `Bearer ${apiKey}`,
-			},
-		});
+        const response = await axios.post(apiUrl, {
+            messages: messages.map(msg => ({ role: msg.role, content: msg.content })),
+            model: 'gpt-3.5-turbo',
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+            },
+        });
 
-		const answer = response.data.choices[0].message.content;
+        const answer = response.data.choices[0].message.content;
 
-		// Add the current question to the conversation history
-		conversationHistory.push({
-			role: 'user',
-			question: question,
-		});
+        // Add the current question and answer to the conversation history
+        conversationHistory.push({
+            role: 'system',
+            question: question,
+            answer: answer,
+        });
 
-		return answer;
-	}
-	catch (error) {
-		console.error('Error making API call to OpenAI:', error);
-		throw error;
-	}
+        console.log(conversationHistory);
+
+        return answer;
+    }
+    catch (error) {
+        console.error('Error making API call to OpenAI:', error);
+        throw error;
+    }
 }
 
 
-
+// conversation
 client.on('messageCreate', async (message) => {
 	if (message.author.bot) return;
 
@@ -102,7 +101,7 @@ client.on('messageCreate', async (message) => {
 			message.channel.send('Yes, I am a bot!');
 		}
 		else if (askBot.test(message.content)) {
-			const question = message.content.slice('!bro'.length).trim();
+			const question = message.content.slice('bro'.length).trim();
 			if (!question) {
 				return message.channel.send('Please provide a question.');
 			}
@@ -121,6 +120,7 @@ client.on('messageCreate', async (message) => {
 });
 
 
+// slash commands
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
