@@ -118,7 +118,7 @@ Now your bot is "online" but can't talk yet
 
 1. Create a folder and modules with slash commands and set up export
    
-3. Create registercommands.js to register the the slash commands and set up export
+3. Create registercommands.js to register the the slash commands and set up the export
 
 4. Modify the index.js to import and register slash commands each time the server launches:
 
