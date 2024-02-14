@@ -1,5 +1,5 @@
 const { Client, IntentsBitField, Partials } = require('discord.js');
-const { token, api_key } = require('../config.json');
+const { token, apiKey } = require('../config.json');
 const axios = require('axios');
 const { commands } = require('../registercommands'); // Import the commands collection
 
@@ -25,61 +25,12 @@ const client = new Client({
 // Define a global array to hold the conversation history
 const conversationHistory = [];
 
+// Event listener for 'ready' event
 client.once('ready', (c) => {
 	console.log(`✅ ${c.user.tag} is online.`);
 });
 
-// Function to make API call to OpenAI GPT-3.5
-async function makeChatGPTApiCall(question, channel) {
-    try {
-        await channel.sendTyping();
-
-        const apiUrl = 'https://api.openai.com/v1/chat/completions';
-        const apiKey = api_key;
-
-        // Create the messages array using the existing conversation history
-        const messages = conversationHistory.map(entry => ({
-            role: 'user',
-            content: entry.question,
-        }));
-
-        // Add a system message as the first element in the messages array
-        messages.unshift({
-            role: 'system',
-            content: 'You are a helpful assistant.',
-        });
-
-        const response = await axios.post(apiUrl, {
-            messages: messages.map(msg => ({ role: msg.role, content: msg.content })),
-            model: 'gpt-3.5-turbo',
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
-            },
-        });
-
-        const answer = response.data.choices[0].message.content;
-
-        // Add the current question and answer to the conversation history
-        conversationHistory.push({
-            role: 'system',
-            question: question,
-            answer: answer,
-        });
-
-        console.log(conversationHistory);
-
-        return answer;
-    }
-    catch (error) {
-        console.error('Error making API call to OpenAI:', error);
-        throw error;
-    }
-}
-
-
-// conversation
+// Event listener for 'messageCreate' event
 client.on('messageCreate', async (message) => {
 	if (message.author.bot) return;
 
@@ -110,17 +61,15 @@ client.on('messageCreate', async (message) => {
 			const answer = await makeChatGPTApiCall(question, message.channel);
 
 			// Send answer to Discord channel
-			message.channel.send(`Q: ${question}\nA: ${answer}`);
+			message.channel.send(`A: ${answer}`);
 		}
 	}
 	catch (error) {
-		console.error('Error processing message:', error);
-		message.channel.send('An error occurred while processing your request.');
+		handleErrorMessage(message, error);
 	}
 });
 
-
-// slash commands
+// Event listener for "slash" commands
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
@@ -137,10 +86,71 @@ client.on('interactionCreate', async interaction => {
 		await command.execute(interaction);
 	}
 	catch (error) {
-		console.error('Error executing command:', error);
-		await interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+		handleCommandError(interaction, error);
 	}
 });
+
+// Function to make API call to OpenAI GPT-3.5
+async function makeChatGPTApiCall(question, channel) {
+	try {
+		await channel.sendTyping();
+
+		const apiUrl = 'https://api.openai.com/v1/chat/completions';
+
+		// Create the messages array using the existing conversation history
+		const messages = conversationHistory.map(entry => ({
+			role: 'user',
+			content: entry.question,
+		}));
+
+		// Add a system message as the first element in the messages array
+		messages.unshift({
+			role: 'system',
+			content: 'You are a helpful assistant.',
+		});
+
+		const response = await axios.post(apiUrl, {
+			messages: messages.map(msg => ({ role: msg.role, content: msg.content })),
+			model: 'gpt-3.5-turbo',
+		}, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${apiKey}`,
+			},
+		});
+
+		const answer = response.data.choices[0].message.content;
+
+		// Add the current question and answer to the conversation history
+		conversationHistory.push({
+			role: 'system',
+			question: question,
+			answer: answer,
+		});
+
+		console.log(conversationHistory);
+
+		return answer;
+	}
+	catch (error) {
+		handleApiError(error);
+	}
+}
+
+function handleErrorMessage(message, error) {
+	console.error('Error processing message:', error);
+	message.channel.send('An error occurred while processing your request.');
+}
+
+function handleCommandError(interaction, error) {
+	console.error('Error executing command:', error);
+	interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+}
+
+function handleApiError(error) {
+	console.error('Error making API call to OpenAI:', error);
+	throw error;
+}
 
 function delay(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
