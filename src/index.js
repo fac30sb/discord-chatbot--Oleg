@@ -1,5 +1,5 @@
 const { Client, IntentsBitField, Partials } = require('discord.js');
-const { token, api_key } = require('../config.json');
+const { token, apiKey } = require('../config.json');
 const axios = require('axios');
 const { commands } = require('../registercommands'); // Import the commands collection
 
@@ -25,8 +25,67 @@ const client = new Client({
 // Define a global array to hold the conversation history
 const conversationHistory = [];
 
+// Event listener for 'ready' event
 client.once('ready', (c) => {
 	console.log(`✅ ${c.user.tag} is online.`);
+});
+
+// Event listener for 'messageCreate' event
+client.on('messageCreate', async (message) => {
+	if (message.author.bot) return;
+
+	const whatsYourName = /bro,? what('?s| is) your name\??/i;
+	const areYouBot = /bro,? are (you|u) a? bot\??/i;
+	const askBot = /^bro,?/i;
+
+	try {
+		// Update conversation history with the current message
+		conversationHistory.push({
+			role: 'user',
+			question: message.content,
+		});
+
+		if (whatsYourName.test(message.content)) {
+			message.channel.send('My friends call me Bro!');
+		}
+		else if (areYouBot.test(message.content)) {
+			message.channel.send('Yes, I am a bot!');
+		}
+		else if (askBot.test(message.content)) {
+			const question = message.content.slice('bro'.length).trim();
+			if (!question) {
+				return message.channel.send('Please provide a question.');
+			}
+
+			// Make API call to OpenAI GPT-3.5
+			const answer = await makeChatGPTApiCall(question, message.channel);
+
+			// Send answer to Discord channel
+			message.channel.send(`A: ${answer}`);
+		}
+	} catch (error) {
+        handleErrorMessage(message, error);
+    }
+});
+
+// // Event listener for "slash" commands
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	const commandName = interaction.commandName;
+	const command = commands.get(commandName);
+
+	if (!command) return;
+
+	try {
+		await Promise.all([
+			interaction.channel.sendTyping(),
+			delay(2000), // Delay for 2 seconds
+		]);
+		await command.execute(interaction);
+	} catch (error) {
+        handleCommandError(interaction, error);
+    }
 });
 
 // Function to make API call to OpenAI GPT-3.5
@@ -35,7 +94,6 @@ async function makeChatGPTApiCall(question, channel) {
         await channel.sendTyping();
 
         const apiUrl = 'https://api.openai.com/v1/chat/completions';
-        const apiKey = api_key;
 
         // Create the messages array using the existing conversation history
         const messages = conversationHistory.map(entry => ({
@@ -78,72 +136,18 @@ async function makeChatGPTApiCall(question, channel) {
     }
 }
 
+function handleErrorMessage(message, error) {
+    console.error('Error processing message:', error);
+    message.channel.send('An error occurred while processing your request.');
+}
 
-// conversation
-client.on('messageCreate', async (message) => {
-	if (message.author.bot) return;
-
-	const whatsYourName = /bro,? what('?s| is) your name\??/i;
-	const areYouBot = /bro,? are (you|u) a? bot\??/i;
-	const askBot = /^bro,?/i;
-
-	try {
-		// Update conversation history with the current message
-		conversationHistory.push({
-			role: 'user',
-			question: message.content,
-		});
-
-		if (whatsYourName.test(message.content)) {
-			message.channel.send('My friends call me Bro!');
-		}
-		else if (areYouBot.test(message.content)) {
-			message.channel.send('Yes, I am a bot!');
-		}
-		else if (askBot.test(message.content)) {
-			const question = message.content.slice('bro'.length).trim();
-			if (!question) {
-				return message.channel.send('Please provide a question.');
-			}
-
-			// Make API call to OpenAI GPT-3.5
-			const answer = await makeChatGPTApiCall(question, message.channel);
-
-			// Send answer to Discord channel
-			message.channel.send(`Q: ${question}\nA: ${answer}`);
-		}
-	}
-	catch (error) {
-		console.error('Error processing message:', error);
-		message.channel.send('An error occurred while processing your request.');
-	}
-});
-
-
-// slash commands
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-
-	const commandName = interaction.commandName;
-	const command = commands.get(commandName);
-
-	if (!command) return;
-
-	try {
-		await Promise.all([
-			interaction.channel.sendTyping(),
-			delay(2000), // Delay for 2 seconds
-		]);
-		await command.execute(interaction);
-	}
-	catch (error) {
-		console.error('Error executing command:', error);
-		await interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
-	}
-});
+function handleCommandError(interaction, error) {
+    console.error('Error executing command:', error);
+    interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+}
 
 function delay(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 client.login(token);
