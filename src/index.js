@@ -1,5 +1,5 @@
 const { Client, IntentsBitField, Partials } = require('discord.js');
-const { token, apiKey } = require('../config.json');
+const { token, api_key } = require('../config.json');
 const axios = require('axios');
 const { commands } = require('../registercommands'); // Import the commands collection
 
@@ -63,9 +63,10 @@ client.on('messageCreate', async (message) => {
 			// Send answer to Discord channel
 			message.channel.send(`A: ${answer}`);
 		}
-	} catch (error) {
-        handleErrorMessage(message, error);
-    }
+	}
+	catch (error) {
+		handleErrorMessage(message, error);
+	}
 });
 
 // // Event listener for "slash" commands
@@ -83,71 +84,77 @@ client.on('interactionCreate', async interaction => {
 			delay(2000), // Delay for 2 seconds
 		]);
 		await command.execute(interaction);
-	} catch (error) {
-        handleCommandError(interaction, error);
-    }
+	}
+	catch (error) {
+		handleCommandError(interaction, error);
+	}
 });
 
 // Function to make API call to OpenAI GPT-3.5
 async function makeChatGPTApiCall(question, channel) {
-    try {
-        await channel.sendTyping();
+	try {
+		await channel.sendTyping();
 
-        const apiUrl = 'https://api.openai.com/v1/chat/completions';
+		const apiUrl = 'https://api.openai.com/v1/chat/completions';
+		const apiKey = api_key;
 
-        // Create the messages array using the existing conversation history
-        const messages = conversationHistory.map(entry => ({
-            role: 'user',
-            content: entry.question,
-        }));
+		// Create the messages array using the existing conversation history
+		const messages = conversationHistory.map(entry => ({
+			role: 'user',
+			content: entry.question,
+		}));
 
-        // Add a system message as the first element in the messages array
-        messages.unshift({
-            role: 'system',
-            content: 'You are a helpful assistant.',
-        });
+		// Add a system message as the first element in the messages array
+		messages.unshift({
+			role: 'system',
+			content: 'You are a helpful assistant.',
+		});
 
-        const response = await axios.post(apiUrl, {
-            messages: messages.map(msg => ({ role: msg.role, content: msg.content })),
-            model: 'gpt-3.5-turbo',
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
-            },
-        });
+		const response = await axios.post(apiUrl, {
+			messages: messages.map(msg => ({ role: msg.role, content: msg.content })),
+			model: 'gpt-3.5-turbo',
+		}, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${apiKey}`,
+			},
+		});
 
-        const answer = response.data.choices[0].message.content;
+		const answer = response.data.choices[0].message.content;
 
-        // Add the current question and answer to the conversation history
-        conversationHistory.push({
-            role: 'system',
-            question: question,
-            answer: answer,
-        });
+		// Add the current question and answer to the conversation history
+		conversationHistory.push({
+			role: 'system',
+			question: question,
+			answer: answer,
+		});
 
-        console.log(conversationHistory);
+		console.log(conversationHistory);
 
-        return answer;
-    }
-    catch (error) {
-        console.error('Error making API call to OpenAI:', error);
-        throw error;
-    }
+		return answer;
+	}
+	catch (error) {
+		handleApiError(error);
+	}
 }
 
 function handleErrorMessage(message, error) {
-    console.error('Error processing message:', error);
-    message.channel.send('An error occurred while processing your request.');
+	console.error('Error processing message:', error);
+	message.channel.send('An error occurred while processing your request.');
 }
 
 function handleCommandError(interaction, error) {
-    console.error('Error executing command:', error);
-    interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+	console.error('Error executing command:', error);
+	interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+}
+
+function handleApiError(error) {
+	console.error('Error making API call to OpenAI:', error);
+	throw error;
 }
 
 function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 client.login(token);
