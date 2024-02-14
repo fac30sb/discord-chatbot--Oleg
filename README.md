@@ -52,8 +52,6 @@ Now your bot is "online" but can't talk yet
 
 ## 3. Returning the test messages
 
-<br>
-
 1. Modify the script
     
     **<details markdown=1><summary markdown="span">index.js</summary>**
