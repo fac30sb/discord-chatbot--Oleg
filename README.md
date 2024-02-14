@@ -20,7 +20,7 @@ https://discordjs.guide/#before-you-begin
 
 <br>
 
-## 2. Set up VS Code
+## 2. Set up the project
 
 1. Create the project folder and navigate in there
 
