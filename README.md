@@ -306,25 +306,37 @@ Now your bot is "online" but can't talk yet
 
    
 3. Clone the repository
-4. Install nodejs and npm
-5. Install dependencies
-6. Instal PM2:
-      
-```sh
-sudo npm install -g pm2
 
-```
+   ```
+   git clone
+   ```
+5. Install nodejs and npm
+
+   ```
+   apt-get installl node 
+   ```
+7. Install dependencies
+
+   ```
+   npm install axios
+   ```
+   
+9. Instal PM2:
+      
+   ```sh
+   sudo npm install -g pm2
+   ```
 6. Start PM2
 
-```sh
-pm2 start index.js
-```
+   ```sh
+   pm2 start index.js
+   ```
 
 7. Confirm
 
-```sh
-pm2 list index.js
-```
+   ```sh
+   pm2 list index.js
+   ```
 
 <br>
 
