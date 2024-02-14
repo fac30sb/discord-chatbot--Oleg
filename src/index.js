@@ -1,5 +1,5 @@
 const { Client, IntentsBitField, Partials } = require('discord.js');
-const { token, api_key } = require('../config.json');
+const { token, apiKey } = require('../config.json');
 const axios = require('axios');
 const { commands } = require('../registercommands'); // Import the commands collection
 
@@ -69,7 +69,7 @@ client.on('messageCreate', async (message) => {
 	}
 });
 
-// // Event listener for "slash" commands
+// Event listener for "slash" commands
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
@@ -96,7 +96,6 @@ async function makeChatGPTApiCall(question, channel) {
 		await channel.sendTyping();
 
 		const apiUrl = 'https://api.openai.com/v1/chat/completions';
-		const apiKey = api_key;
 
 		// Create the messages array using the existing conversation history
 		const messages = conversationHistory.map(entry => ({
