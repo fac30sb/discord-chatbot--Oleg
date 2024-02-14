@@ -318,6 +318,7 @@ Now your bot is "online" but can't talk yet
 7. Install dependencies
 
    ```
+   npm install discord.js
    npm install axios
    ```
    
