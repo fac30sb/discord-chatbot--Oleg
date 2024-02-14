@@ -294,7 +294,7 @@ Now your bot is "online" but can't talk yet
     ```
     </details>
     
-    <img width="800" alt="Screenshot 2024-02-06 at 20 58 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/dc0bd4bb-4b0c-469c-a9ac-9377b06d3ae4">
+    <img width="800" alt="Screenshot 2024-02-14 at 16 41 38" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b447fa89-39b7-47dd-a9a1-c3e5952df159">
 
 <br>
 
