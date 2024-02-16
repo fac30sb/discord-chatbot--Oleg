@@ -16,8 +16,8 @@ https://discordjs.guide/#before-you-begin
 3. Use OAuth2 --> URL generator and generate a url to invite your app (bot) to your server as a channel member
 4. Issue(reset) the token to use it later in your code and enable the bot
 
-    <img width="800" alt="Screenshot 2024-02-06 at 13 57 40" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/e411e957-5d17-4ab4-be26-7522b97f14cd">
-    <img width="800" alt="Screenshot 2024-02-06 at 13 05 40" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8fb94b6f-cb26-48ce-b77f-e001f598cc35">
+    <img width="800" alt="Screenshot 2024-02-06 at 13 57 40" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/e411e957-5d17-4ab4-be26-7522b97f14cd"><br><br>
+    <img width="800" alt="Screenshot 2024-02-06 at 13 05 40" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8fb94b6f-cb26-48ce-b77f-e001f598cc35"><br><br>
     <img width="800" alt="Screenshot 2024-02-06 at 14 11 42" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/74e9371c-5b95-4f88-b976-051e6d0b3ee2">
 
 <br>
@@ -57,7 +57,7 @@ https://discordjs.guide/#before-you-begin
     
     <img width="800" alt="Screenshot 2024-02-06 at 14 30 23" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/73a677b5-0b23-4ca2-9b00-98b0bddf4177">
 
-    Now your bot is "online" but can't talk yet
+4. Now your bot is "online" but can't talk yet
     
     <img width="300" alt="Screenshot 2024-02-06 at 14 22 32" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/1bff99b7-ac25-41a7-b2b3-19289b7ea1fd">
     
@@ -127,13 +127,23 @@ https://discordjs.guide/#before-you-begin
 
 ## 4. Set up slash commands
 
-1. Create a folder and modules with slash commands and set up export
+1. Create a folder and modules with slash commands and set up the export
+
+    [https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility](https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility)
    
-3. Create registercommands.js to register the the slash commands and set up the export
+2. Create registercommands.js to register the the slash commands and set up the export
 
-4. Modify the index.js to import and register slash commands each time the server launches:
+    [https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js)
 
-5. Test the commands:
+3. Modify the index.js to import and register slash commands each time the server launches:
+
+    ```js
+    const { commands } = require('../registercommands'); 		// Import the commands collection from the registercommands module
+
+    const commands = new Map(); // Create a Map to store commands
+    ```
+
+4. Test the commands:
    
     <img width="750" alt="Screenshot 2024-02-13 at 14 04 46" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b37606b9-9971-4523-a60a-092cf601a9e9">
     <img width="1000" alt="Screenshot 2024-02-13 at 14 11 01" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/8c127616-9214-4a20-818a-4433b805c3d8">
@@ -142,7 +152,7 @@ https://discordjs.guide/#before-you-begin
 
 1. Modify the script
 
-    link at the final script: **[index.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/src/index.js)**
+    the link at the final script: **[index.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/src/index.js)**
 
 2. Result:
     
@@ -195,4 +205,3 @@ https://discordjs.guide/#before-you-begin
 <br>
 
 <img width="800" alt="Screenshot 2024-02-12 at 18 01 27" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/d756c837-7d08-49d5-be67-c36610dbac63">
-
