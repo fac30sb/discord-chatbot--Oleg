@@ -50,12 +50,12 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 > 3. Create the config.json, place it in your root directory and use config-example.json as a template
 > 
 > ```json
->   {
->     "token": "<your token>", // you can issue the token for your bot using https://discord.com/developers/ portal
->     "apiKey": "<your APIKey>", // you can issue the token for your bot using https://platform.openai.com portal
->     "guildId": "<your GuildID>", // Discord calls servers as "guilds", so copy-paste your server ID
->     "clientId": "<your Client ID>"  // Client means bot here, so copy-paste your bot ID here
->   }
+> {
+>    "token": "<your token>", // you can issue the token for your bot using https://discord.com/developers/ portal
+>    "apiKey": "<your APIKey>", // you can issue the token for your bot using https://platform.openai.com portal
+>    "guildId": "<your GuildID>", // Discord calls servers as "guilds", so copy-paste your server ID
+>    "clientId": "<your Client ID>"  // Client means bot here, so copy-paste your bot ID here
+> }
 > ```
 
     
