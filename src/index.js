@@ -5,13 +5,13 @@
  */
 
 // Import required modules
-const { token, apiKey } = require('../config.json');// Import Discord bot token and OpenAI API key from config file
-													// Store sensitive data like tokens and keys securely in config.json
-													// Make sure not to expose config.json to version control systems
-													// Use a template file like config-example.json to create your own config
+const { token, apiKey } = require('../config.json');		// Import Discord bot token and OpenAI API key from config file
+								// Store sensitive data like tokens and keys securely in config.json
+								// Make sure not to expose config.json to version control systems
+								// Use a template file like config-example.json to create your own config
 const { Client, IntentsBitField, Partials } = require('discord.js'); // Import Discord.js client and other necessary classes
-const axios = require('axios'); // Import Axios for making HTTP requests
-const { commands } = require('../registercommands'); // Import the commands collection from the registercommands module
+const axios = require('axios'); 				// Import Axios for making HTTP requests
+const { commands } = require('../registercommands'); 		// Import the commands collection from the registercommands module
 
 /**
  * The Discord client instance.
@@ -20,13 +20,13 @@ const { commands } = require('../registercommands'); // Import the commands coll
 const client = new Client({
 	// Define the intents required by the bot
 	intents: [
-		IntentsBitField.Flags.Guilds, 				// For guild-related events
+		IntentsBitField.Flags.Guilds, 			// For guild-related events
 		IntentsBitField.Flags.GuildMembers, 		// For guild member-related events
 		IntentsBitField.Flags.GuildMessages, 		// For guild message-related events
 		IntentsBitField.Flags.MessageContent, 		// For message content-related events
 		IntentsBitField.Flags.GuildMessageTyping, 	// For guild message typing-related events
 		IntentsBitField.Flags.DirectMessages, 		// For direct message-related events
-		IntentsBitField.Flags.DirectMessageReactions, // For direct message reaction-related events
+		IntentsBitField.Flags.DirectMessageReactions, 	// For direct message reaction-related events
 		IntentsBitField.Flags.DirectMessageTyping, 	// For direct message typing-related events
 	],
 	// Define the partials required by the bot
