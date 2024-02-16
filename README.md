@@ -142,7 +142,7 @@ https://discordjs.guide/#before-you-begin
 
 1. Modify the script
 
-    [index.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/src/index.js)
+    link at the final script: [index.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/src/index.js)
 
 2. Result:
     
