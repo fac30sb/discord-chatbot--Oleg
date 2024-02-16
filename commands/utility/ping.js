@@ -1,6 +1,6 @@
 /**
  * A module for a ping command.
- * 
+ *
  * @module pingCommand
  */
 

@@ -1,6 +1,6 @@
 /**
  * A module to retrieve and register slash commands from the commands/ folder for the Discord bot.
- * 
+ *
  * @module registerCommands
  */
 

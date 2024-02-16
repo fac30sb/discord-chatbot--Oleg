@@ -1,14 +1,14 @@
 /**
  * A Discord bot that interacts with users and utilizes OpenAI's GPT-3.5 model for conversation.
- * 
+ *
  * @module discordBot
  */
 
 // Import required modules
 const { token, apiKey } = require('../config.json'); // Import Discord bot token and OpenAI API key from config file
-                                                     // Store sensitive data like tokens and keys securely in config.json
-                                                     // Make sure not to expose config.json to version control systems
-                                                     // Use a template file like config-example.json to create your own config
+// Store sensitive data like tokens and keys securely in config.json
+// Make sure not to expose config.json to version control systems
+// Use a template file like config-example.json to create your own config
 const { Client, IntentsBitField, Partials } = require('discord.js'); // Import Discord.js client and other necessary classes
 const axios = require('axios'); // Import Axios for making HTTP requests
 const { commands } = require('../registercommands'); // Import the commands collection from the registercommands module
@@ -18,23 +18,23 @@ const { commands } = require('../registercommands'); // Import the commands coll
  * @type {Client}
  */
 const client = new Client({
-    // Define the intents required by the bot
-    intents: [
-        IntentsBitField.Flags.Guilds,                  // For guild-related events
-        IntentsBitField.Flags.GuildMembers,            // For guild member-related events
-        IntentsBitField.Flags.GuildMessages,           // For guild message-related events
-        IntentsBitField.Flags.MessageContent,          // For message content-related events
-        IntentsBitField.Flags.GuildMessageTyping,      // For guild message typing-related events
-        IntentsBitField.Flags.DirectMessages,          // For direct message-related events
-        IntentsBitField.Flags.DirectMessageReactions,  // For direct message reaction-related events
-        IntentsBitField.Flags.DirectMessageTyping,     // For direct message typing-related events
-    ],
-    // Define the partials required by the bot
-    partials: [
-        Partials.Message,
-        Partials.Channel,
-        Partials.Reaction,
-    ],
+	// Define the intents required by the bot
+	intents: [
+		IntentsBitField.Flags.Guilds, // For guild-related events
+		IntentsBitField.Flags.GuildMembers, // For guild member-related events
+		IntentsBitField.Flags.GuildMessages, // For guild message-related events
+		IntentsBitField.Flags.MessageContent, // For message content-related events
+		IntentsBitField.Flags.GuildMessageTyping, // For guild message typing-related events
+		IntentsBitField.Flags.DirectMessages, // For direct message-related events
+		IntentsBitField.Flags.DirectMessageReactions, // For direct message reaction-related events
+		IntentsBitField.Flags.DirectMessageTyping, // For direct message typing-related events
+	],
+	// Define the partials required by the bot
+	partials: [
+		Partials.Message,
+		Partials.Channel,
+		Partials.Reaction,
+	],
 });
 
 /**
@@ -47,7 +47,7 @@ const conversationHistory = [
 	{
 		role: 'system',
 		content: 'You are a helpful assistant.',
-	}
+	},
 ];
 
 /**
@@ -63,7 +63,7 @@ const askBot = /^bro,?/i;
  * @param {Client} c The client instance.
  */
 client.once('ready', (c) => {
-    console.log(`✅ ${c.user.tag} is online.`);
+	console.log(`✅ ${c.user.tag} is online.`);
 });
 
 /**
@@ -74,53 +74,53 @@ client.once('ready', (c) => {
  * @param {Message} message The received message.
  */
 client.on('messageCreate', async (message) => {
-    // Ignore messages from bots
-    if (message.author.bot) return;
+	// Ignore messages from bots
+	if (message.author.bot) return;
 
-    // Define regular expressions to match specific user queries
-    const whatsYourName = /bro,? what('?s| is) your name\??/i;
-    const areYouBot = /bro,? are (you|u) a? bot\??/i;
+	// Define regular expressions to match specific user queries
+	const whatsYourName = /bro,? what('?s| is) your name\??/i;
+	const areYouBot = /bro,? are (you|u) a? bot\??/i;
 
-    try {
-        // Update conversation history with the current message
-        conversationHistory.push({
-            role: 'user',
-            content: message.content,
-        });
+	try {
+		// Update conversation history with the current message
+		conversationHistory.push({
+			role: 'user',
+			content: message.content,
+		});
 
-        // Respond to specific user queries:
-        // Name
-        if (whatsYourName.test(message.content)) {
-            message.channel.send('My friends call me Bro!');
+		// Respond to specific user queries:
+		// Name
+		if (whatsYourName.test(message.content)) {
+			message.channel.send('My friends call me Bro!');
 			conversationHistory.push({
 				role: 'system',
 				content: 'My friends call me Bro!',
 			});
-        }
-        // Nature
-        else if (areYouBot.test(message.content)) {
-            message.channel.send('Yes, I am a bot!');
+		}
+		// Nature
+		else if (areYouBot.test(message.content)) {
+			message.channel.send('Yes, I am a bot!');
 			conversationHistory.push({
 				role: 'system',
 				content: 'Yes, I am a bot!',
 			});
-        }
-        else if (askBot.test(message.content)) {
-            const question = message.content.slice('bro'.length).trim();
-            if (!question) {
-                return message.channel.send('Please provide a question.');
-            }
+		}
+		else if (askBot.test(message.content)) {
+			const question = message.content.slice('bro'.length).trim();
+			if (!question) {
+				return message.channel.send('Please provide a question.');
+			}
 
-            // Make API call to OpenAI GPT-3.5
-            const answer = await makeChatGPTApiCall(question, message.channel);
+			// Make API call to OpenAI GPT-3.5
+			const answer = await makeChatGPTApiCall(question, message.channel);
 
-            // Send answer to Discord channel
-            message.channel.send(`A: ${answer}`);
-        }
-    }
-    catch (error) {
-        handleErrorMessage(message, error);
-    }
+			// Send answer to Discord channel
+			message.channel.send(`A: ${answer}`);
+		}
+	}
+	catch (error) {
+		handleErrorMessage(message, error);
+	}
 });
 
 /**
@@ -130,26 +130,26 @@ client.on('messageCreate', async (message) => {
  * @param {Interaction} interaction The interaction instance.
  */
 client.on('interactionCreate', async interaction => {
-    // Ignore interactions that are not commands
-    if (!interaction.isCommand()) return;
+	// Ignore interactions that are not commands
+	if (!interaction.isCommand()) return;
 
-    const commandName = interaction.commandName;
-    const command = commands.get(commandName);
+	const commandName = interaction.commandName;
+	const command = commands.get(commandName);
 
-    if (!command) return;
+	if (!command) return;
 
-    try {
-        // Display typing indicator and delay to simulate processing
-        await Promise.all([
-            interaction.channel.sendTyping(),
-            delay(2000), // Delay for 2 seconds
-        ]);
-        // Execute the command
-        await command.execute(interaction);
-    }
-    catch (error) {
-        handleCommandError(interaction, error);
-    }
+	try {
+		// Display typing indicator and delay to simulate processing
+		await Promise.all([
+			interaction.channel.sendTyping(),
+			delay(2000), // Delay for 2 seconds
+		]);
+		// Execute the command
+		await command.execute(interaction);
+	}
+	catch (error) {
+		handleCommandError(interaction, error);
+	}
 });
 
 /**
@@ -158,38 +158,38 @@ client.on('interactionCreate', async interaction => {
  * @param {TextChannel} channel The Discord channel to send the response to.
  * @returns {Promise<string>} A Promise that resolves to the response generated by GPT-3.5.
  */
- async function makeChatGPTApiCall(question, channel) {
-    try {
-        await channel.sendTyping();
+async function makeChatGPTApiCall(question, channel) {
+	try {
+		await channel.sendTyping();
 
-        const apiUrl = 'https://api.openai.com/v1/chat/completions';
+		const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
-        const response = await axios.post(apiUrl, {
-            messages: conversationHistory,
-            model: 'gpt-3.5-turbo',
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
-            },
-        });
+		const response = await axios.post(apiUrl, {
+			messages: conversationHistory,
+			model: 'gpt-3.5-turbo',
+		}, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${apiKey}`,
+			},
+		});
 
-        // Extract the generated answer from the API response
-        const answer = response.data.choices[0].message.content;
+		// Extract the generated answer from the API response
+		const answer = response.data.choices[0].message.content;
 
-        // Update conversation history with the current question and answer
-        conversationHistory.push({
-            role: 'system',
-            content: answer,
-        });
+		// Update conversation history with the current question and answer
+		conversationHistory.push({
+			role: 'system',
+			content: answer,
+		});
 
 		console.log(conversationHistory);
 
-        return answer;
-    }
-    catch (error) {
-        handleApiError(error);
-    }
+		return answer;
+	}
+	catch (error) {
+		handleApiError(error);
+	}
 }
 
 
@@ -200,8 +200,8 @@ client.on('interactionCreate', async interaction => {
  * @param {Error} error The error object.
  */
 function handleErrorMessage(message, error) {
-    console.error('Error processing message:', error);
-    message.channel.send('An error occurred while processing your request.');
+	console.error('Error processing message:', error);
+	message.channel.send('An error occurred while processing your request.');
 }
 
 /**
@@ -211,8 +211,8 @@ function handleErrorMessage(message, error) {
  * @param {Error} error The error object.
  */
 function handleCommandError(interaction, error) {
-    console.error('Error executing command:', error);
-    interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
+	console.error('Error executing command:', error);
+	interaction.reply({ content: 'An error occurred while executing this command.', ephemeral: true });
 }
 
 /**
@@ -221,8 +221,8 @@ function handleCommandError(interaction, error) {
  * @param {Error} error The error object.
  */
 function handleApiError(error) {
-    console.error('Error making API call to OpenAI:', error);
-    throw error;
+	console.error('Error making API call to OpenAI:', error);
+	throw error;
 }
 
 /**
@@ -231,7 +231,7 @@ function handleApiError(error) {
  * @returns {Promise<void>} A Promise that resolves after the specified delay.
  */
 function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**

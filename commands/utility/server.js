@@ -1,6 +1,6 @@
 /**
  * A module for the "server" command.
- * 
+ *
  * @module serverCommand
  */
 

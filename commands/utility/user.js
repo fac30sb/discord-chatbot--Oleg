@@ -1,6 +1,6 @@
 /**
  * A module for the "user" command.
- * 
+ *
  * @module userCommand
  */
 
