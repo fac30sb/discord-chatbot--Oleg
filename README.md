@@ -141,11 +141,27 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 1. Create a folder and modules with slash commands and set up the export
 
     [https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility](https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility)
+
    
 2. Create registercommands.js to register the the slash commands and set up the export
 
     [https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js)
 
+    
+4. You will need to copy the server ID and the bot ID. Add them to your config as guildID and clientID
+    
+    <img width="300" alt="Screenshot 2024-02-16 at 22 23 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/7ee78767-9be0-40f0-a28e-866d3d268b5e"> <img width="300" alt="Screenshot 2024-02-16 at 22 17 30" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/bead8752-c392-460d-8f26-77200f19e69b">
+    
+    ```json
+    {
+       "token": "<your token>", // you can issue the token for your bot using https://discord.com/developers/ portal
+       "apiKey": "<your APIKey>", // you can issue the token for your bot using https://platform.openai.com portal
+       "guildId": "<your GuildID>", // Discord calls servers as "guilds", so copy-paste your server ID
+       "clientId": "<your Client ID>"  // Client means bot here, so copy-paste your bot ID here
+    }
+    ```
+    
+    
 3. Modify the index.js to import and register slash commands each time the server launches:
 
     ```js
