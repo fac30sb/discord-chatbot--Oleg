@@ -307,7 +307,8 @@ https://discordjs.guide/#before-you-begin
     ```
     </details>
     
-    <img width="800" alt="Screenshot 2024-02-14 at 16 41 38" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/b447fa89-39b7-47dd-a9a1-c3e5952df159">
+    <img width="800" alt="Screenshot 2024-02-16 at 17 07 24" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/cc46ca5e-db69-4906-816a-220004ba8bf2">
+    <img width="800" alt="Screenshot 2024-02-16 at 17 02 31" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/e9881721-73ad-4d92-adde-f3ed7ad3e167">
 
 <br>
 
