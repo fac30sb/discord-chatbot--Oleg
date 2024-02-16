@@ -74,7 +74,7 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
     **<details markdown=1><summary markdown="span">index.js</summary>**
     
     ```js
-    require('dotenv').config();
+    const { token } = require('../config.json');
     const { Client, IntentsBitField, Partials } = require('discord.js');
     
     
@@ -120,7 +120,7 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
     });
     
     
-    client.login(process.env.DISCORD_TOKEN);
+    client.login(token);
     ```
     
     </details>
