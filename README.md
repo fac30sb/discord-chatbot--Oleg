@@ -1,4 +1,4 @@
-# discord-chatbot--Oleg-Loza
+# Discord AI Chat-Bot
 
 link at the discord docs: [https://discordjs.guide/#before-you-begin](https://discordjs.guide/#before-you-begin)
 
