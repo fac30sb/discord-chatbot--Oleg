@@ -1,3 +1,9 @@
+/**
+ * A module for the "user" command.
+ * 
+ * @module userCommand
+ */
+
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {

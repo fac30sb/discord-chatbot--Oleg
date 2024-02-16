@@ -5,13 +5,13 @@
  */
 
  // Import required modules
-const { Client, IntentsBitField, Partials } = require('discord.js'); // Import Discord.js client and other necessary classes
 const { token, apiKey } = require('../config.json'); // Import Discord bot token and OpenAI API key from config file
-                                                     // You will need config.json to store sensitive data and import it here
+                                                     // You will need config.json to store the sensitive data. Place it to the root directory
 													 // Refer to a config-example.json as an example
 													 // Never push config.json to your GitHub and add it to .gitignore
+const { Client, IntentsBitField, Partials } = require('discord.js'); // Import Discord.js client and other necessary classes
 const axios = require('axios'); // Import Axios for making HTTP requests
-const { commands } = require('../registercommands'); // Import the commands collection
+const { commands } = require('../registercommands'); // Import the commands collection from registercommands module
  
  /**
   * The Discord client instance.
@@ -43,6 +43,12 @@ const { commands } = require('../registercommands'); // Import the commands coll
   * @type {Object[]}
   */
  const conversationHistory = [];
+
+ /**
+  * A marker to address the request to the bot.
+  * If you use it, the bot answers the question, if not - the question is processed as a standard one in the group chat.
+  */
+ const askBot = /^bro,?/i;
  
  /**
   * Event listener for the 'ready' event.
@@ -68,7 +74,6 @@ const { commands } = require('../registercommands'); // Import the commands coll
 	 // Define regular expressions to match specific user queries
 	 const whatsYourName = /bro,? what('?s| is) your name\??/i;
 	 const areYouBot = /bro,? are (you|u) a? bot\??/i;
-	 const askBot = /^bro,?/i;
  
 	 try {
 		 // Update conversation history with the current message
