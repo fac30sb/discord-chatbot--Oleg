@@ -1,3 +1,10 @@
+/**
+ * A module for a ping command.
+ * 
+ * @module pingCommand
+ */
+
+
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {

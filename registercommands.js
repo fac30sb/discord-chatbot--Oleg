@@ -1,3 +1,9 @@
+/**
+ * A module to retrieve and register slash commands from the commands/ folder for the Discord bot.
+ * 
+ * @module registerCommands
+ */
+
 const { REST, Routes } = require('discord.js');
 const { clientId, guildId, token } = require('./config.json');
 const fs = require('node:fs');

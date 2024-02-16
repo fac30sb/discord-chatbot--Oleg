@@ -1,3 +1,9 @@
+/**
+ * A module for the "server" command.
+ * 
+ * @module serverCommand
+ */
+
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
