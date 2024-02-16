@@ -45,6 +45,10 @@ https://discordjs.guide/#before-you-begin
     ```
 
 3. Create the config.json, place it in your root directory and use config-example.json as a template
+
+   ```json
+   
+   ```
     
     <img width="800" alt="Screenshot 2024-02-06 at 14 30 23" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/73a677b5-0b23-4ca2-9b00-98b0bddf4177">
 
