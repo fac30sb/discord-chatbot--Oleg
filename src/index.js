@@ -47,7 +47,7 @@ const conversationHistory = [
 	{
 		role: 'system',
 		content: 'You are a helpful assistant.',
-	},
+	}
 ];
 
 /**
