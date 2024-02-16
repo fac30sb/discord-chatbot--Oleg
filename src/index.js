@@ -192,7 +192,6 @@ async function makeChatGPTApiCall(question, channel) {
 	}
 }
 
-
 /**
  * Handles errors that occur during message processing.
  * Logs the error and notifies the user about the error.
