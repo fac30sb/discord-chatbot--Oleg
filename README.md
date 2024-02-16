@@ -188,7 +188,7 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 
 <br>
 
-## 5. Deploying to a cloud server to run and be available 24 hours a day
+## 5. Deploying to a cloud server and run to be available 24 hours a day
 
 1. Launch the server
 
