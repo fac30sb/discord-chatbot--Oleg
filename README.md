@@ -140,12 +140,12 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 
 1. Create a folder and modules with slash commands and set up the export
 
-    [https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility](https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility)
+    **[https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility](https://github.com/fac30/discord-chatbot--Oleg-Loza/tree/main/commands/utility)**
 
    
 2. Create registercommands.js to register the the slash commands and set up the export
 
-    [https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js)
+    **[https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js)**
 
     
 4. You will need to copy the server ID and the bot ID. Add them to your config as guildID and clientID
