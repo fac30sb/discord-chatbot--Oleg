@@ -47,7 +47,7 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 
 
 > [!IMPORTANT]  
-> 3. Create the config.json, place it in your root directory and use config-example.json as a template
+> **3. Create the config.json, place it in your root directory and use config-example.json as a template**
 > 
 > ```json
 > {
