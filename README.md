@@ -148,7 +148,7 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
     **[https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js](https://github.com/fac30/discord-chatbot--Oleg-Loza/blob/main/registercommands.js)**
 
     
-4. You will need to copy the server ID and the bot ID. Add them to your config as guildID and clientID
+4. You will need to copy the `server ID` and the `bot ID`. Add them to your config as `guildID` and `clientID`
     
     <img width="300" alt="Screenshot 2024-02-16 at 22 23 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/7ee78767-9be0-40f0-a28e-866d3d268b5e"> <img width="300" alt="Screenshot 2024-02-16 at 22 17 30" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/bead8752-c392-460d-8f26-77200f19e69b">
     
