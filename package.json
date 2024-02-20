@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/integration_new_discord_client_creation.test.js"
   },
   "keywords": [],
   "author": "",
