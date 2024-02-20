@@ -138,7 +138,8 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 
 ## 4. Set up slash commands
 
-Slash commands in Discord are special commands that start with a forward slash (/) and allow users to perform various pre-defined actions or invoke specific features
+> [!NOTE]  
+> Slash commands in Discord are special commands that start with a forward slash (/) and allow users to perform various pre-defined actions or invoke specific features
 
 1. Create a folder and modules with slash commands and set up the export
 
