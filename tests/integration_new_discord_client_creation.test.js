@@ -47,6 +47,22 @@ test("OpenAI API integration should return a valid response", async () => {
     assert.fail('OpenAI API integration test failed');
   }
 });
-  
-  
+
+test("Bot should securely load API keys from the config.json file", () => {
+  try {
+    // Check if the apiKey is defined and not empty without revealing its value
+    if (!apiKey || apiKey.trim() === '') {
+      throw new Error('API key not found or empty in config.json');
+    }
+
+    // Add more checks if needed based on your config.json file structure
+
+    console.log('Bot securely loads API keys from the config.json file.');
+  } catch (error) {
+    // If there's an error, fail the test and log the error
+    console.error('Error while checking config.json file:', error);
+    assert.fail('Error while checking config.json file');
+  }
+});
+
  
