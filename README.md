@@ -233,6 +233,7 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 
     <img width="800" alt="Screenshot 2024-02-12 at 18 01 27" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/d756c837-7d08-49d5-be67-c36610dbac63">
 
+<br><br>
 
 ## 6. Using Your Bot 🤖 💬
 
