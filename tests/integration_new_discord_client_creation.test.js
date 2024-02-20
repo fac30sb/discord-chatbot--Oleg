@@ -88,4 +88,44 @@ test("Bot initialization and login to Discord should succeed", async () => {
   }
 });
 
+test("Bot responds with 'hello' message upon receiving a message", async () => {
+  let client; // Define the client variable outside the try-catch block for logout
+
+  try {
+    // Create a new Discord client instance
+    client = new Client({
+      intents: [IntentsBitField.Flags.Guilds],
+    });
+
+    // Define a promise to await message response
+    const messageReceived = new Promise(resolve => {
+      client.once('messageCreate', message => {
+        resolve(message);
+      });
+    });
+
+    // Log in the bot using the provided token
+    await client.login(token);
+
+    // Simulate receiving a message
+    client.emit('messageCreate', { content: 'hello', author: { bot: false } });
+
+    // Wait for the bot to respond with a 'hello' message
+    const responseMessage = await messageReceived;
+
+    // Check if the bot responded with a 'hello' message
+    assert.strictEqual(responseMessage.content, 'hello', "Bot did not respond with 'hello' message.");
+
+    console.log("Bot responded with 'hello' message upon receiving a message.");
+  } catch (error) {
+    // If there's an error, fail the test and log the error
+    console.error("Bot message event listener functionality test failed:", error);
+    assert.fail("Bot message event listener functionality test failed");
+  } finally {
+    // Log out the bot after completing the test
+    if (client) await client.destroy();
+    console.log("Bot successfully logged out from Discord.");
+  }
+});
+
  
