@@ -193,6 +193,9 @@ link at the discord docs: [https://discordjs.guide/#before-you-begin](https://di
 
 ## 5. Deploying to a cloud server and run to be available 24 hours a day
 
+> [!NOTE]
+> PM2 is a daemon process manager that will help you manage and keep your application online 24/7. So it will help keep our app live and running.
+
 1. Launch the server
 
    <img width="800" alt="Screenshot 2024-02-14 at 16 45 41" src="https://github.com/fac30/discord-chatbot--Oleg-Loza/assets/113034133/0e1e1614-937b-4d7a-b7af-b3080a0c9eaf">
