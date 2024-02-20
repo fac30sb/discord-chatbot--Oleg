@@ -2,7 +2,7 @@ const assert = require('assert');
 const { Client, IntentsBitField } = require('discord.js');
 const test = require('node:test');
 const axios = require('axios');
-const { apiKey } = require('../config.json'); 
+const { apiKey, token } = require('../config.json'); 
 
 /**
  * Test function to verify Discord.js integration by creating a new Discord client.
@@ -62,6 +62,29 @@ test("Bot should securely load API keys from the config.json file", () => {
     // If there's an error, fail the test and log the error
     console.error('Error while checking config.json file:', error);
     assert.fail('Error while checking config.json file');
+  }
+});
+
+test("Bot initialization and login to Discord should succeed", async () => {
+  try {
+    // Create a new Discord client instance
+    const client = new Client({
+      intents: [IntentsBitField.Flags.Guilds],
+    });
+
+    // Log in the bot using the provided token
+    await client.login(token);
+
+    // Check if the bot is logged in by verifying its presence in the guilds cache
+    assert.ok(client.guilds.cache.size > 0, "Bot is not logged in or failed to initialize.");
+
+    await client.destroy();
+
+    console.log("Bot initialization and login to Discord succeeded.");
+  } catch (error) {
+    // If there's an error, fail the test and log the error
+    console.error("Bot initialization and login to Discord failed:", error);
+    assert.fail("Bot initialization and login to Discord failed");
   }
 });
 
