@@ -189,22 +189,24 @@ test('Bot accurately processes commands from general messages', async () => {
 });
 
 /**
- * Test to introduce faults or exceptions in bot interactions to verify that 
+ * Test to introduce faults or exceptions in bot interactions to verify that
  * the bot’s error handling mechanisms effectively manage and log errors.
  */
- test('Error handling test: Introducing faults or exceptions', async () => {
-    try {
-        // Simulate a scenario where the bot encounters an error during command execution
-        // For example, here we'll pass an undefined interaction object to the command error handling function
-        await discordBot.handleErrorMessage(undefined);
-        
-        // If an error is not thrown, fail the test
-        assert.fail('Error handling test: Introducing faults or exceptions - Expected an error to be thrown');
-    } catch (error) {
-        // Verify that the error was properly handled and logged
-        assert.strictEqual(error.message, "Cannot read properties of undefined (reading 'channel')");
-        console.log('Error handling test: Introducing faults or exceptions - Error properly handled and logged');
-    } finally {
+test('Error handling test: Introducing faults or exceptions', async () => {
+	try {
+		// Simulate a scenario where the bot encounters an error during command execution
+		// For example, here we'll pass an undefined interaction object to the command error handling function
+		await discordBot.handleErrorMessage(undefined);
+
+		// If an error is not thrown, fail the test
+		assert.fail('Error handling test: Introducing faults or exceptions - Expected an error to be thrown');
+	}
+	catch (error) {
+		// Verify that the error was properly handled and logged
+		assert.strictEqual(error.message, 'Cannot read properties of undefined (reading \'channel\')');
+		console.log('Error handling test: Introducing faults or exceptions - Error properly handled and logged');
+	}
+	finally {
 		process.exit();
 	}
 });
