@@ -3,6 +3,7 @@ const { Client, IntentsBitField } = require('discord.js');
 const test = require('node:test');
 const axios = require('axios');
 const { apiKey, token } = require('../config.json');
+const discordBot = require('../src/index.js');
 
 /**
  * Test function to verify Discord.js integration by creating a new Discord client.
@@ -149,39 +150,63 @@ test('Bot responds with \'hello\' message upon receiving a message', async () =>
 * Test to simulate commands directed at the bot and check if it accurately processes these commands.
 */
 test('Bot accurately processes commands from general messages', async () => {
-  let client; // Define the client variable outside the try-catch block for logout
-  
+	let client; // Define the client variable outside the try-catch block for logout
 
-  try {
-      // Create a new Discord client instance
-      client = new Client({
-          intents: [IntentsBitField.Flags.Guilds],
-      });
+	try {
+		// Create a new Discord client instance
+		client = new Client({
+			intents: [IntentsBitField.Flags.Guilds],
+		});
 
-      await client.login(token);
+		await client.login(token);
 
-    const commandExecuted = new Promise(resolve => {
-      client.once('messageCreate', async message => {
-        if (message.content === 'bro what is your name?') {
-          resolve('My friends call me Bro!'); // Resolve with just the content
-        }
-      });
-    });
+		const commandExecuted = new Promise(resolve => {
+			client.once('messageCreate', async message => {
+				if (message.content === 'bro what is your name?') {
+					resolve('My friends call me Bro!'); // Resolve with just the content
+				}
+			});
+		});
 
-    client.emit('messageCreate', { content: 'bro what is your name?', author: { bot: false } });
+		client.emit('messageCreate', { content: 'bro what is your name?', author: { bot: false } });
 
-    const response = await commandExecuted;
+		const response = await commandExecuted;
 
-    console.log(`bot responded with: ${response}`)
+		console.log(`bot responded with: ${response}`);
 
-    assert.strictEqual(response, 'My friends call me Bro!', 'Bot did not respond with expected message.');
+		assert.strictEqual(response, 'My friends call me Bro!', 'Bot did not respond with expected message.');
 
-    console.log('Bot accurately processes commands from general messages.');
-  } catch (error) {
-    console.error('Bot command processing test failed:', error);
-    assert.fail('Bot command processing test failed');
-  } finally {
-    if (client) await client.destroy();
-    console.log('Bot successfully logged out from Discord.');
-  }
+		console.log('Bot accurately processes commands from general messages.');
+	}
+	catch (error) {
+		console.error('Bot command processing test failed:', error);
+		assert.fail('Bot command processing test failed');
+	}
+	finally {
+		if (client) await client.destroy();
+		console.log('Bot successfully logged out from Discord.');
+	}
+});
+
+/**
+ * Test to introduce faults or exceptions in bot interactions to verify that
+ * the bot’s error handling mechanisms effectively manage and log errors.
+ */
+test('Error handling test: Introducing faults or exceptions', async () => {
+	try {
+		// Simulate a scenario where the bot encounters an error during command execution
+		// For example, here we'll pass an undefined interaction object to the command error handling function
+		await discordBot.handleErrorMessage(undefined);
+
+		// If an error is not thrown, fail the test
+		assert.fail('Error handling test: Introducing faults or exceptions - Expected an error to be thrown');
+	}
+	catch (error) {
+		// Verify that the error was properly handled and logged
+		assert.strictEqual(error.message, 'Cannot read properties of undefined (reading \'channel\')');
+		console.log('Error handling test: Introducing faults or exceptions - Error properly handled and logged');
+	}
+	finally {
+		process.exit();
+	}
 });

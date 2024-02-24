@@ -237,3 +237,10 @@ function delay(ms) {
  * Logs the bot in using the provided token.
  */
 client.login(token);
+
+
+/**
+ * Export some functions for testing
+ */
+module.exports = { handleErrorMessage };
+
