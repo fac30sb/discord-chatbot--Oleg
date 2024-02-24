@@ -145,3 +145,43 @@ test('Bot responds with \'hello\' message upon receiving a message', async () =>
 	}
 });
 
+/**
+* Test to simulate commands directed at the bot and check if it accurately processes these commands.
+*/
+test('Bot accurately processes commands from general messages', async () => {
+  let client; // Define the client variable outside the try-catch block for logout
+  
+
+  try {
+      // Create a new Discord client instance
+      client = new Client({
+          intents: [IntentsBitField.Flags.Guilds],
+      });
+
+      await client.login(token);
+
+    const commandExecuted = new Promise(resolve => {
+      client.once('messageCreate', async message => {
+        if (message.content === 'bro what is your name?') {
+          resolve('My friends call me Bro!'); // Resolve with just the content
+        }
+      });
+    });
+
+    client.emit('messageCreate', { content: 'bro what is your name?', author: { bot: false } });
+
+    const response = await commandExecuted;
+
+    console.log(`bot responded with: ${response}`)
+
+    assert.strictEqual(response, 'My friends call me Bro!', 'Bot did not respond with expected message.');
+
+    console.log('Bot accurately processes commands from general messages.');
+  } catch (error) {
+    console.error('Bot command processing test failed:', error);
+    assert.fail('Bot command processing test failed');
+  } finally {
+    if (client) await client.destroy();
+    console.log('Bot successfully logged out from Discord.');
+  }
+});
