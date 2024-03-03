@@ -3,3 +3,15 @@
 node_modules/*
 
 config.json
+
+aws/
+
+awscliv2.zip 
+
+terraform.tfstate
+
+terraform.tfstate.backup
+
+.terraform.lock.hcl
+
+
