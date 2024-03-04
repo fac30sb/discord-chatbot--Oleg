@@ -22,16 +22,6 @@ resource "aws_subnet" "some_public_subnet" {
   }
 }
 
-resource "aws_subnet" "some_private_subnet" {
-  vpc_id            = aws_vpc.some_custom_vpc.id
-  cidr_block        = "10.0.2.0/24"
-  availability_zone = "eu-west-2a"
-
-  tags = {
-    Name = "Some Private Subnet"
-  }
-}
-
 resource "aws_internet_gateway" "some_ig" {
   vpc_id = aws_vpc.some_custom_vpc.id
 
