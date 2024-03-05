@@ -1,3 +1,14 @@
+// This is a terraform template to launch the infrastructure and 
+// deploy your bot to be available for 24/7 on your Discord chat
+// Steps to deploy:
+// 1. Install AWS CLI
+// 2. Configure AWS (key, access key, region)
+// 3. Terraform apply
+// 4. SSH to the created instance
+// 5. Clone the repository with your bot
+// 6. Update config-example.json to use your secrets (OpenAPI key, Bot ID, Server ID)
+// 7. Launch PM2 to run the bot at the background on your EC2 server (command `PM2 start`)
+
 provider "aws" {
   profile = "default"
   region  = var.aws_region
