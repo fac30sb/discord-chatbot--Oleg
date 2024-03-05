@@ -7,7 +7,7 @@
 // 4. SSH to the created instance
 // 5. Clone the repository with your bot
 // 6. Update config-example.json to use your secrets (OpenAPI key, Bot ID, Server ID)
-// 7. Launch PM2 to run the bot at the background on your EC2 server (command `PM2 start`)
+// 7. Launch PM2 to run the bot at the background on your EC2 server (command `PM2 start index.js`)
 
 provider "aws" {
   profile = "default"
