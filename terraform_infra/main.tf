@@ -108,8 +108,8 @@ resource "aws_instance" "web_instance" {
     sudo apt-get update && sudo apt-get install nodejs -y
 
     # Clone the repo
-    sudo git clone https://github.com/fac30/discord-chatbot--Oleg-Loza.git /home/ubuntu/discord-chatbot--Oleg-Loza
-    cd /home/ubuntu/discord-chatbot--Oleg-Loza
+    sudo git clone https://github.com/fac30/discord-chatbot--Oleg-Loza.git /home/ubuntu/discord-chatbot--Oleg
+    cd /home/ubuntu/discord-chatbot--Oleg
 
     # Install PM2
     sudo npm install -g pm2
@@ -118,7 +118,7 @@ resource "aws_instance" "web_instance" {
     sudo npm install
 
     # Start your application using PM2
-    #pm2 start ./discord-chatbot--Oleg-Loza
+    #pm2 start ./discord-chatbot--Oleg
 
     # Save PM2 startup configuration
     #pm2 startup systemd -u ubuntu --hp /home/ubuntu
