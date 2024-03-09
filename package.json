@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "node tests/integration_new_discord_client_creation.test.js"
+    "test": "node tests/unit_and_integration.test.js"
   },
   "keywords": [],
   "author": "",

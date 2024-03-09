@@ -184,7 +184,6 @@ test('Bot accurately processes commands from general messages', async () => {
 	}
 	finally {
 		if (client) await client.destroy();
-		console.log('Bot successfully logged out from Discord.');
 	}
 });
 
@@ -204,7 +203,7 @@ test('Error handling test: Introducing faults or exceptions', async () => {
 	catch (error) {
 		// Verify that the error was properly handled and logged
 		assert.strictEqual(error.message, 'Cannot read properties of undefined (reading \'channel\')');
-		console.log('Error handling test: Introducing faults or exceptions - Error properly handled and logged');
+		console.log('Successful error handling test: Introducing faults or exceptions - Error properly handled and logged');
 	}
 	finally {
 		process.exit();
